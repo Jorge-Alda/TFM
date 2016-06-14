@@ -1,12 +1,15 @@
+"""
+Calculates decay widths and branching ratios for s, as well as the scalar mixing angle.
+"""
+
 import numpy as np
 from scipy.constants import pi
 import matplotlib.pyplot as plt
 
-Ns = 150
+Ns = int(raw_input("Ns = "))
 mz = 91.1876
 mt = 173.21
 mw = 80.385
-ms = 2527.0
 mh = 125.7
 vh = 246.0
 gs = 1.2177
@@ -15,7 +18,10 @@ twoloops = 1
 Nf = 0
 g4_0 = 0.0
 
-def RK4(x, t, f, delta, pars): #4th order Runge-Kutta integrator
+def RK4(x, t, f, delta, pars): 
+        """
+            4th order Runge-Kutta integrator
+        """
 	k1 = []
 	k2 = []
 	k3 = []
@@ -47,6 +53,9 @@ def RK4(x, t, f, delta, pars): #4th order Runge-Kutta integrator
     
 #Running of the three lambda's plus the Yukawa coupling
 def betalambda(y, t, pars):
+    """
+        some beta functions
+    """
     gs, yt, lh, ls, lhs, g4 = y
     nf, calch = pars
     beta_gs = -(11.0-2.0/3.0*nf)*gs**3/(4*pi)**2-(102.0-38.0/3.0*nf)*gs**5/(4*pi)**4*twoloops
@@ -61,12 +70,19 @@ def betalambda(y, t, pars):
 
     return [beta_gs, beta_yt, beta_lh, beta_ls, beta_lhs, beta_g4]
 
+def funcF(x):
+    if x< 1.0:
+        return np.arcsin(np.sqrt(x))**2
+    else:
+        return -0.25*(np.log((1+np.sqrt(1-1.0/x) )/(1-np.sqrt(1-1.0/x))) -1.0j*pi )**2
+
 brtt = []
 brWW = []
 brZZ = []
 brHH = []
 totwidth = []
 angle = []
+fang = open('angles.txt', 'w')
 msspace = np.linspace(0.4, 10, 500)
 for msTeV in msspace:
     ms = 1000*msTeV
@@ -156,7 +172,10 @@ for msTeV in msspace:
     m1 = np.sqrt( 0.5*(mh**2 + ms**2 + np.sqrt( (mh**2 - ms**2)**2 + 4*mhs2**2  )  ) )
     m2 = np.sqrt( 0.5*(mh**2 + ms**2 - np.sqrt( (mh**2 - ms**2)**2 + 4*mhs2**2  )  ) )
     theta = 0.5*np.arctan(2*mhs2/(ms**2-mh**2))
-    angle.append(theta)    
+    angle.append(theta)  
+    tau = m1**2/(4*mt**2)
+    factor = abs(( tau+(tau-1.0)*funcF(tau) )/tau**2  )**2
+    fang.write('{0}\t{1}\t{2}\n'.format(m1, theta, factor))  
     
     av = (2*lhs + blhs)*vs/np.sqrt(2)
     bv = (2*lhs+3*blhs)/4
@@ -181,20 +200,33 @@ for msTeV in msspace:
 
 plt.close()
 
-plt.plot(angle, totwidth, linewidth=2.5)
-#plt.plot(msspace, totwidth, 'k', linewidth=3, label=r'$\Gamma(\sigma \to \mathrm{all})$')
-#plt.plot(msspace, angle, 'r', linewidth=2.5)
-#plt.plot(msspace, brHH, linewidth=2.5, label=r'$\mathrm{BR}(s \to hh)$')
-#plt.plot(msspace, brtt, linewidth=2.5, label=r'$\mathrm{BR}(s \to t\bar{t})$')
-#plt.plot(msspace, brWW, linewidth=2.5, label=r'$\mathrm{BR}(s \to WW)$')
-#plt.plot(msspace, brZZ, linewidth=2.5, label=r'$\mathrm{BR}(s \to ZZ)$')
-#plt.legend(loc=3)
-#plt.yscale('log')
+plt.figure(1)
+plt.plot(msspace, totwidth, 'k', linewidth=3, label=r'$\Gamma(\sigma \to \mathrm{all})$')
 plt.rc('text', usetex=True)
 plt.rc('font', family='serif', size=15)
 plt.xlabel(r'$m_\sigma\ (\mathrm{TeV})$', fontsize=25)
 plt.ylabel(r'$\Gamma\ (\mathrm{GeV})$', fontsize=25)
-#plt.ylabel(r'$\theta$')
-#plt.ylim((1e-5, 1.5))
+plt.yscale('log')
+
+plt.figure(2)
+plt.plot(msspace, angle, 'r', linewidth=2.5)
+plt.rc('text', usetex=True)
+plt.rc('font', family='serif', size=15)
+plt.xlabel(r'$m_\sigma\ (\mathrm{TeV})$', fontsize=25)
+plt.ylabel(r'$\theta$', fontsize=25)
+plt.yscale('log')
+
+plt.figure(3)
+plt.plot(msspace, brHH, linewidth=2.5, label=r'$\mathrm{BR}(s \to hh)$')
+plt.plot(msspace, brtt, linewidth=2.5, label=r'$\mathrm{BR}(s \to t\bar{t})$')
+plt.plot(msspace, brWW, linewidth=2.5, label=r'$\mathrm{BR}(s \to WW)$')
+plt.plot(msspace, brZZ, linewidth=2.5, label=r'$\mathrm{BR}(s \to ZZ)$')
+plt.xlabel(r'$m_\sigma\ (\mathrm{TeV})$', fontsize=25)
+plt.legend(loc=3)
+plt.yscale('log')
+plt.ylim((1e-5, 1.5))
 
 plt.show()
+fang.close()
+
+    
