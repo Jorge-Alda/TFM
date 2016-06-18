@@ -1,6 +1,7 @@
 /**
-*	export LHAPATH=$HOME/Documentos/git/TFM/programas/PDFs
-*	g++ crossections.cpp -o crossections -I $(lhapdf-config --incdir) -L $(lhapdf-config --libdir) -lLHAPDF
+*	Calculates the cross-section for the production of s via gluon fusion
+*	Program for the Master Thesis 'New Applications of the Coleman-Weinberg model'
+*	Jorge Alda Gallo
 */
 
 #include <LHAPDF/LHAPDF.h>
@@ -39,7 +40,7 @@ int main(){
 		double delta = (1.0-xmin)/NxPoints;
 		double integ=0;
 		double sigma0 = GF * pow(alphasPDF(Q)* sin(theta[i]), 2)/(128*sqrt(2)*M_PI)*factor[i];
-		for (int j=0; j<NxPoints; j++){
+		for (int j=0; j<NxPoints; j++){ // Integration
 			initPDF(0);
 			double x = xmin + j*delta;
 			integ += xfx(x,Q,0)*xfx(mass[i]*mass[i]/(x*s), Q,0)*delta ; 

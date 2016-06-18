@@ -1,5 +1,7 @@
 """
 Calculates decay widths and branching ratios for s, as well as the scalar mixing angle.
+Program for the Master Thesis 'New Applications of the Coleman-Weinberg model'
+Jorge Alda Gallo
 """
 
 import numpy as np
@@ -7,16 +9,16 @@ from scipy.constants import pi
 import matplotlib.pyplot as plt
 
 Ns = int(raw_input("Ns = "))
-mz = 91.1876
-mt = 173.21
-mw = 80.385
-mh = 125.7
-vh = 246.0
-gs = 1.2177
-yt = 0.9369
-twoloops = 1
-Nf = 0
-g4_0 = 0.0
+mz = 91.1876 # Z boson mass 
+mt = 173.21 # top quark mass
+mw = 80.385 # W boson mass
+mh = 125.7 # Higgs boson mass
+vh = 246.0 # Higgs vev
+gs = 1.2177 # Strong coupling at \mu = mz
+yt = 0.9369 # Top Yukawa coupling at \mu = mt
+twoloops = 1 # 1 if the two-loops beta functions are used (when available), 0 otherwise
+Nf = 0 # Number of fermions in the fundamental repr of SU(NS)
+g4_0 = 0.0 # Coupling constant for the SU(NS) gauge group (0 for a global symmetry)
 
 def RK4(x, t, f, delta, pars): 
         """
@@ -51,7 +53,6 @@ def RK4(x, t, f, delta, pars):
 		x[s] = x[s] + (k1[s] + 2*k2[s] + 2*k3[s] + k4[s])/6.0
 
     
-#Running of the three lambda's plus the Yukawa coupling
 def betalambda(y, t, pars):
     """
         some beta functions
@@ -71,6 +72,9 @@ def betalambda(y, t, pars):
     return [beta_gs, beta_yt, beta_lh, beta_ls, beta_lhs, beta_g4]
 
 def funcF(x):
+    """
+        Function for the gluon fusion cross-section
+    """
     if x< 1.0:
         return np.arcsin(np.sqrt(x))**2
     else:
@@ -83,7 +87,7 @@ brHH = []
 totwidth = []
 angle = []
 fang = open('angles.txt', 'w')
-msspace = np.linspace(0.4, 10, 500)
+msspace = np.linspace(0.4, 10, 800)
 for msTeV in msspace:
     ms = 1000*msTeV
     a = 8 + 2*Ns+16.0*mh**4/ms**4
@@ -92,82 +96,67 @@ for msTeV in msspace:
     ls = (-b-np.sqrt(b**2-4*a*c) )/(2*a)
     lhs = - np.sqrt(-32*pi**2*ls - 2*(4+Ns)*ls**2 + 3*g4_0**2*ls*(Ns**2-1)/Ns +3.0/8.0 * (Ns**3+Ns**2-4*Ns+2)/Ns**2 * g4_0**4 )
     lh = mh**2/(2*vh**2)
-    #ls = -16*pi**2/(4+Ns+8*mh**4/(ms**4))
-    #lhs = 4*mh**2/ms**2*ls
     vs = ms/np.sqrt(-8*ls)
     
-    #First we calculate gs(vs) given gs(mz)
     
     if vs > mt:
+	    # Fix gs at \mu=mz with 5 active flavors, and then run until \mu=mh
         coup = [gs,0,0,0,0, 0]
         dt = (np.log(mh) - np.log(mz))/20
         for t in range(0,20):
             RK4(coup, t, betalambda, dt, [5,0]) 
         
+	    # Fix the coupling \lambda_h at \mu=mz, and then run until \mu=mt
         coup[2] = lh
         dt = (np.log(mt) - np.log(mh))/200
         for t in np.linspace(np.log(mh), np.log(mt), 200):
             RK4(coup, t, betalambda, dt, [5,0])
         
+	    # Fix the Yukawa yt at \mu= mt, and the run until \mu=vs
         coup[1] = yt
         dt = (np.log(vs) - np.log(mt))/100
         for t in np.linspace(np.log(mt), np.log(vs), 100):
             RK4(coup, t, betalambda, dt, [6,0]) 
         
-        #Now gs and lh @ mh
+        # Fix the couplings \lambda_s and \lambda_{hs} at \mu=ms, and calculate their beta functions
         coup[3] = ls
         coup[4] = lhs
         coup[5] = g4_0
-        tarray=[]
-        lharray=[]
-        lsarray=[]
-        lhsarray=[]
-        g4array=[] 
-        dist = []
-        dt = (20*np.log(10) - np.log(vs))/5000
         [bgs, byt, blh, bls, blhs, bg4] = betalambda(coup, t, [6,1])
     
     elif vs > mh:
+	    # Fix gs at \mu=mz with 5 active flavors, and then run until \mu=mh
         coup = [gs,0,0,0,0, 0]
         dt = (np.log(mh) - np.log(mz))/20
         for t in range(0,20):
             RK4(coup, t, betalambda, dt, [5,0]) 
         
+	    # Fix the coupling \lambda_h at \mu=mh, and then run until \mu=vs
         coup[2] = lh
         dt = (np.log(vs) - np.log(mh))/200
         for t in np.linspace(np.log(mh), np.log(vs), 200):
             RK4(coup, t, betalambda, dt, [5,0])
     
+	    # Fix the couplings \lambda_s and \lambda_{hs} at \mu=ms, and calculate their beta functions
         coup[3] = ls
         coup[4] = lhs
         coup[5] = g4_0
-        tarray=[]
-        lharray=[]
-        lsarray=[]
-        lhsarray=[] 
-        g4array=[]
-        dist = []
-        dt = (np.log(mt) - np.log(vs))/200
-        [bgs, byt, blh, bls, blhs, bg4] = betalambda(coup, t, [6,1])
+        [bgs, byt, blh, bls, blhs, bg4] = betalambda(coup, t, [5,1])
         
     else:    
+	    # Fix gs at \mu=mz with 5 active flavors, and then run until \mu=vs
         coup = [gs,0,0,0,0, 0]
         dt = (np.log(vs) - np.log(mz))/20
         for t in range(0,20):
             RK4(coup, t, betalambda, dt, [5,0])
-    
+
+    	# Fix the couplings \lambda_s and \lambda_{hs} at \mu=ms, and calculate their beta functions
         coup[3] = ls
         coup[4] = lhs
         coup[5] = g4_0
-        tarray=[]
-        lharray=[]
-        lsarray=[]
-        lhsarray=[] 
-        g4array=[]
-        dist = []
-        dt = (np.log(mh) - np.log(vs))/200
-        [bgs, byt, blh, bls, blhs, bg4] = betalambda(coup, t, [6,1])
+        [bgs, byt, blh, bls, blhs, bg4] = betalambda(coup, t, [5,1])
     
+    # Calculate mass eigenvalues, mixing angles and f(\tau) and save them to file
     mhs2 = vh/np.sqrt(2)*((2*lhs + blhs)*vs + blh*vh*vh/vs )
     m1 = np.sqrt( 0.5*(mh**2 + ms**2 + np.sqrt( (mh**2 - ms**2)**2 + 4*mhs2**2  )  ) )
     m2 = np.sqrt( 0.5*(mh**2 + ms**2 - np.sqrt( (mh**2 - ms**2)**2 + 4*mhs2**2  )  ) )
@@ -177,27 +166,29 @@ for msTeV in msspace:
     factor = abs(( tau+(tau-1.0)*funcF(tau) )/tau**2  )**2
     fang.write('{0}\t{1}\t{2}\n'.format(m1, theta, factor))  
     
+    # Decay width into two Higgs
     av = (2*lhs + blhs)*vs/np.sqrt(2)
     bv = (2*lhs+3*blhs)/4
     cv = blh/(np.sqrt(2)*vs)
     ev = -blh/(4*vs**2)
     fv = np.sqrt(2)*vs*(ls+bls)
     kappa = (av+6*cv*vh**2)*np.cos(theta)**3  +  (-4*np.sqrt(2)*vh*bv - 8*np.sqrt(2)*vh**3*ev)*np.cos(theta)**2*np.sin(theta)  +  (6*fv-2*av-12*cv*vh**2)*np.cos(theta)*np.sin(theta)  +  (2*np.sqrt(2)*vh*bv +4 *np.sqrt(2)*vh**3*ev)*np.sin(theta)**3
+    decayHH = kappa**2/(8*pi*ms)*np.sqrt(1-4*mh**2/ms**2)
 
+    # Higgs-like Decay widths 
     decaytt = 3* mt**2*m1**2*np.sin(theta)**2/(8*pi*vh**2*m1)*(1-4*mt**2/m1**2)*np.sqrt(1-4*mt**2/m1**2)
     decayWW = np.sin(theta)**2*mw**4/(4*pi*m1*vh**2)*(1-4*mw**2/m1**2)**0.5*(3+m1**4/(4*mw**4)-m1**2/mw**2)
     decayZZ = np.sin(theta)**2*mz**4/(8*pi*m1*vh**2)*(1-4*mz**2/m1**2)**0.5*(3+m1**4/(4*mz**4)-m1**2/mz**2)
-    decayHH = kappa**2/(8*pi*ms)*np.sqrt(1-4*mh**2/ms**2)
+    
+    # Total decay width and branching ratios
     decaytot = decaytt + decayWW + decayZZ + decayHH
     totwidth.append(decaytot)
     brtt.append(decaytt/decaytot)
     brWW.append(decayWW/decaytot)
     brZZ.append(decayZZ/decaytot)
     brHH.append(decayHH/decaytot)
-    f = open('decays.txt', 'a')
-    f.write('{0}\t{1}\t{2}\t{3}\t{4}\n'.format(decayHH, decayWW, decayZZ, decaytt, decaytot))
-    f.close()
 
+# Plotting
 plt.close()
 
 plt.figure(1)
@@ -227,6 +218,4 @@ plt.yscale('log')
 plt.ylim((1e-5, 1.5))
 
 plt.show()
-fang.close()
-
-    
+fang.close()   

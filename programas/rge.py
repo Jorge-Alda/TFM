@@ -1,21 +1,29 @@
+"""
+Calculates the running of the coupling constants
+Program for the Master Thesis 'New Applications of the Coleman-Weinberg model'
+Jorge Alda Gallo
+"""
+
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.constants import pi
-from operator import itemgetter
 
-Ns = 150
-mz = 91.187
-mt = 173.34
-ms = 2527.0
-mh = 125.09
-vh = 246.0
-gs = 1.2177
-yt = 0.9369
-twoloops = 1
-Nf = 0
-g4_0 = 0.0
+Ns = int(raw_input("Ns = "))
+ms = int(raw_input("ms = "))
+mz = 91.1876 # Z boson mass 
+mt = 173.21 # top quark mass
+mh = 125.7 # Higgs boson mass
+vh = 246.0 # Higgs vev
+gs = 1.2177 # Strong coupling at \mu = mz
+yt = 0.9369 # Top Yukawa coupling at \mu = mt
+twoloops = 1 # 1 if the two-loops beta functions are used (when available), 0 otherwise
+Nf = 0 # Number of fermions in the fundamental repr of SU(NS)
+g4_0 = 0.0 # Coupling constant for the SU(NS) gauge group (0 for a global symmetry)
 
-def RK4(x, t, f, delta, pars): #4th order Runge-Kutta integrator
+def RK4(x, t, f, delta, pars):
+    """ 
+        4th order Runge-Kutta integrator
+    """
 	k1 = []
 	k2 = []
 	k3 = []
@@ -45,8 +53,10 @@ def RK4(x, t, f, delta, pars): #4th order Runge-Kutta integrator
 		x[s] = x[s] + (k1[s] + 2*k2[s] + 2*k3[s] + k4[s])/6.0
 
     
-#Running of the three lambda's plus the Yukawa coupling
 def betalambda(y, t, pars):
+    """
+        some beta functions
+    """
     gs, yt, lh, ls, lhs, g4 = y
     nf, calch = pars
     beta_gs = -(11.0-2.0/3.0*nf)*gs**3/(4*pi)**2-(102.0-38.0/3.0*nf)*gs**5/(4*pi)**4*twoloops
@@ -67,32 +77,29 @@ c = 3.0/8.0 * (Ns**3+Ns**2-4*Ns+2)/Ns**2 * g4_0**4
 ls = (-b-np.sqrt(b**2-4*a*c) )/(2*a)
 lhs = - np.sqrt(-32*pi**2*ls - 2*(4+Ns)*ls**2 + 3*g4_0**2*ls*(Ns**2-1)/Ns +3.0/8.0 * (Ns**3+Ns**2-4*Ns+2)/Ns**2 * g4_0**4 )
 lh = mh**2/(2*vh**2)
-#ls = -16*pi**2/(4+Ns+8*mh**4/(ms**4))
-#lhs = 4*mh**2/ms**2*ls
 vs = ms/np.sqrt(-8*ls)
-print(ls)
-print(lhs)
-print(vs)
 
-#First we calculate gs(vs) given gs(mz)
 
 if vs > mt:
+    # Fix gs at \mu=mz with 5 active flavors, and then run until \mu=mh
     coup = [gs,0,0,0,0, 0]
     dt = (np.log(mh) - np.log(mz))/20
     for t in range(0,20):
         RK4(coup, t, betalambda, dt, [5,0]) 
     
+    # Fix the coupling \lambda_h at \mu=mz, and then run until \mu=mt
     coup[2] = lh
     dt = (np.log(mt) - np.log(mh))/200
     for t in np.linspace(np.log(mh), np.log(mt), 200):
         RK4(coup, t, betalambda, dt, [5,0])
     
+    # Fix the Yukawa yt at \mu= mt, and the run until \mu=vs
     coup[1] = yt
     dt = (np.log(vs) - np.log(mt))/100
     for t in np.linspace(np.log(mt), np.log(vs), 100):
         RK4(coup, t, betalambda, dt, [6,0]) 
     
-    #Now gs and lh @ mh
+    # Fix the couplings \lambda_s and \lambda_{hs} at \mu=ms, and run until \mu=1e20 GeV
     coup[3] = ls
     coup[4] = lhs
     coup[5] = g4_0
@@ -101,7 +108,6 @@ if vs > mt:
     lsarray=[]
     lhsarray=[]
     g4array=[] 
-    dist = []
     dt = (20*np.log(10) - np.log(vs))/5000
     [bgs, byt, blh, bls, blhs, bg4] = betalambda(coup, t, [6,1])
     for t in np.linspace(np.log(vs), 20*np.log(10), 5000):
@@ -111,19 +117,21 @@ if vs > mt:
         lsarray.append(coup[3])
         lhsarray.append(coup[4])
         g4array.append(coup[5])
-        dist.append((np.abs(coup[2]-coup[3])+np.abs(coup[2]-coup[4])+np.abs(coup[3]-coup[4]))/3.0 )
 
 elif vs > mh:
+    # Fix gs at \mu=mz with 5 active flavors, and then run until \mu=mh
     coup = [gs,0,0,0,0, 0]
     dt = (np.log(mh) - np.log(mz))/20
     for t in range(0,20):
         RK4(coup, t, betalambda, dt, [5,0]) 
     
+    # Fix the coupling \lambda_h at \mu=mh, and then run until \mu=vs
     coup[2] = lh
     dt = (np.log(vs) - np.log(mh))/200
     for t in np.linspace(np.log(mh), np.log(vs), 200):
         RK4(coup, t, betalambda, dt, [5,0])
 
+    # Fix the couplings \lambda_s and \lambda_{hs} at \mu=ms, and run until \mu=mt
     coup[3] = ls
     coup[4] = lhs
     coup[5] = g4_0
@@ -132,7 +140,6 @@ elif vs > mh:
     lsarray=[]
     lhsarray=[] 
     g4array=[]
-    dist = []
     dt = (np.log(mt) - np.log(vs))/200
     [bgs, byt, blh, bls, blhs, bg4] = betalambda(coup, t, [6,1])
     for t in np.linspace(np.log(vs), np.log(mt), 200):
@@ -142,8 +149,8 @@ elif vs > mh:
         lsarray.append(coup[3])
         lhsarray.append(coup[4])
         g4array.append(coup[5])
-        dist.append((np.abs(coup[2]-coup[3])+np.abs(coup[2]-coup[4])+np.abs(coup[3]-coup[4]))/3.0 )
     
+    # Fix the Yukawa yt at \mu= mt, and the run until \mu=1e20
     coup[1] = yt
     dt = (20*np.log(10) - np.log(mt))/1000
     for t in np.linspace(np.log(mt), 20*np.log(10), 1000):
@@ -157,11 +164,13 @@ elif vs > mh:
     
     
 else:    
+    # Fix gs at \mu=mz with 5 active flavors, and then run until \mu=vs
     coup = [gs,0,0,0,0, 0]
     dt = (np.log(vs) - np.log(mz))/20
     for t in range(0,20):
         RK4(coup, t, betalambda, dt, [5,0])
 
+    # Fix the couplings \lambda_s and \lambda_{hs} at \mu=ms, and then run until \mu=mh
     coup[3] = ls
     coup[4] = lhs
     coup[5] = g4_0
@@ -170,7 +179,6 @@ else:
     lsarray=[]
     lhsarray=[] 
     g4array=[]
-    dist = []
     dt = (np.log(mh) - np.log(vs))/200
     [bgs, byt, blh, bls, blhs, bg4] = betalambda(coup, t, [6,1])
     for t in np.linspace(np.log(vs), np.log(mh), 200):
@@ -179,9 +187,9 @@ else:
         lharray.append(coup[2])
         lsarray.append(coup[3])
         lhsarray.append(coup[4])
-        g4array.append(coup[5])
-        dist.append((np.abs(coup[2]-coup[3])+np.abs(coup[2]-coup[4])+np.abs(coup[3]-coup[4]))/3.0 ) 
+        g4array.append(coup[5]) 
     
+    # Fix the coupling \lambda_h at \mu=mh, and then run until \mu=mt
     coup[2] = lh
     dt = (np.log(mt) - np.log(mh))/200
     for t in np.linspace(np.log(mh), np.log(mt), 200):
@@ -191,8 +199,8 @@ else:
         lsarray.append(coup[3])
         lhsarray.append(coup[4])
         g4array.append(coup[5])
-        dist.append((np.abs(coup[2]-coup[3])+np.abs(coup[2]-coup[4])+np.abs(coup[3]-coup[4]))/3.0 ) 
     
+    # Fix the Yukawa yt at \mu= mt, and the run until \mu=1e20 GeV
     coup[1] = yt
     dt = (20*np.log(10) - np.log(mt))/1000
     for t in np.linspace(np.log(mt), 20*np.log(10), 1000):
@@ -201,30 +209,18 @@ else:
         lharray.append(coup[2])
         lsarray.append(coup[3])
         lhsarray.append(coup[4])
-        g4array.append(coup[5])
-        dist.append((np.abs(coup[2]-coup[3])+np.abs(coup[2]-coup[4])+np.abs(coup[3]-coup[4]))/3.0 )  
+        g4array.append(coup[5])  
 
-
-print tarray[min(enumerate(dist), key=itemgetter(1))[0]]
-maxl = max(max(lharray), -min(lharray), max(lsarray), -min(lsarray), max(lhsarray), -min(lhsarray) )
-print(maxl)
+# Plotting
 plt.close()
 plt.plot(tarray, lharray, linewidth=2.5, label=r'\lambda_h')
 plt.plot(tarray, lsarray, linewidth=2.5, label=r'\lambda_s')
 plt.plot(tarray, lhsarray, linewidth=2.5, label = r'\lambda_{hs}')
-plt.plot(tarray, g4array, linewidth=2.5, label = r'g_4')
 plt.ylim((-5, 5))
 plt.rc('text', usetex=True)
 plt.rc('font', family='serif', size=25)
 plt.xlabel(r'\log_{10}(\mu/ 1 \mathrm{GeV})', fontsize=25)
 plt.legend(loc=2)
-#plt.plot(tarray, dist)
 plt.show()
 
-mhs2 = vh/np.sqrt(2)*((2*lhs + blhs)*vs + blh*vh*vh/vs )
-m1 = np.sqrt( 0.5*(mh**2 + ms**2 + np.sqrt( (mh**2 - ms**2)**2 + 4*mhs2**2  )  ) )
-m2 = np.sqrt( 0.5*(mh**2 + ms**2 - np.sqrt( (mh**2 - ms**2)**2 + 4*mhs2**2  )  ) )
-print(str(m1)+'GeV\t' + str(m2) +'GeV' )
-theta = -0.5*np.arctan(2*mhs2/(ms**2-mh**2))
-print(theta)
 
