@@ -5,7 +5,6 @@
 \usepackage{bm}        % for math
 \usepackage{amssymb}   % for math
 \usepackage[utf8]{inputenc}
-%\usepackage[spanish]{babel}
 \usepackage{hyperref}
 
 \usepackage{amsmath}
@@ -13,8 +12,8 @@
 \usepackage{appendix}
 \usepackage{epsfig}
 \usepackage{siunitx}
-\usepackage{verbatim}
 \hyphenation{arXiv}
+\usepackage{verbatim}
 
 \addtolength{\textheight}{1.6cm}
 
@@ -31,23 +30,29 @@
 
 
 \title{\Large New Applications of the Coleman-Weinberg Model}
-\author{Jorge Alda Gallo}
+\author{\textbf{Author:} Jorge Alda Gallo}
 \email{jalda@ucm.es}
 
 
-\author{J. A. R. Cembranos}
+\author{\textbf{Supervisor:} J. A. R. Cembranos}
 \email{cembra@fis.ucm.es}
 \affiliation{Department of Theoretical Physics I, Universidad Complutense de Madrid}
-
 \begin{comment}
+\begin{widetext}
 \thispagestyle{empty}
 
 
-\date{de 2016}
+\date{Junio de 2016}
 
 
-\begin{abstract}
 \begin{center}
+{\Large NEW APPLICATIONS OF THE COLEMAN-WEINBERG MODEL}\\
+\vspace{0.7cm}
+Trabajo de Fin de Máster\\
+presentado para la obtención del Máster de Física Teórica\\
+por la Universidad Complutense de Madrid.\\
+Curso 2015-2016
+
 \vspace{0.7cm}
 
 {\bf Autor:}\\
@@ -67,11 +72,11 @@ J. A. R. Cembranos $^{(2)}$\\
 \vspace{0.6cm}
 
 
-\vspace{5cm}
+\vspace{4cm}
 \begin{center}
 \includegraphics[width=0.30\textwidth]{ucmlogo}
 \end{center}
-\vspace{5cm}
+\vspace{4cm}
 \end{center}
 
 $^{(1)}$  E-mail: \href{mailto:jalda@ucm.es}{jalda@ucm.es}
@@ -79,27 +84,23 @@ $^{(1)}$  E-mail: \href{mailto:jalda@ucm.es}{jalda@ucm.es}
 $^{(2)}$ E-mail: \href{mailto:cembra@fis.ucm.es}{cembra@fis.ucm.es}
 \vspace{8cm}
 
-%\end{abstract}
-
-
 
 
 \clearpage
+\end{widetext}
 
-
-\maketitle
-
+\thispagestyle{empty}
 \begin{widetext}
 \begin{quotation}
 
 {\bf Resumen:}\\
-
+Presentamos una modificación del mecanismo de Coleman-Weinberg con la finalidad de describir el origen de la masa de bosón de Higgs. El mecanismo de Coleman-Weinberg no se aplica al propio bosón de Higgs, sino a un nuevo campo escalar cargado bajo una simetría $\mathsf{SU}(N_S)$. Estudiamos las condicionas que imponen la renormalizabilidad y la Gran Unificación sobre la masa del escalar y la dimensión del grupo de simetría; así como las posibilidades de detrcción del nuevo bosón escalar en un acelerador de partículas. 
 
 
 \vspace{2cm}
 
 {\bf Abstract:}\\
-
+We present a modified Coleman-Weinberg mechanism in order to describe the origin of the Higgs boson mass. The Coleman-Weinberg mechanism is not realized by the Higgs field itself, but by a new scalar field charged under a $\mathsf{SU}(N_S)$ symmetry. We study the conditions that renomalizability and Grand Unification impose on the mass of the scalar and the dimension of the symmetry group; and the prospects of detection of the new scalar boson in a particle accelerator.
 
 
 \vspace{2cm}
@@ -108,29 +109,33 @@ $^{(2)}$ E-mail: \href{mailto:cembra@fis.ucm.es}{cembra@fis.ucm.es}
 \tableofcontents
 
 
-\vspace{5cm}
+%\vspace{5cm}
 
 
+%\thispagestyle{empty}
 
-
-\newpage
-\clearpage
+%\newpage
+%\clearpage
 \end{comment}
-
+\setcounter{page}{1}
 \begin{abstract}
-We present a modified Coleman-Weinberg mechanism in order to describe the origin of the Higgs boson mass. This model includes a new scalar field charged under a $\mathsf{SU}(N_S)$ symmetry. We study the conditions that renomalizability and Grand Unification impose on the mass of the scalar and the dimension of the symmetry group; and the prospects of detection of the new scalar boson in a particle accelerator.
+We present a modified Coleman-Weinberg mechanism in order to describe the origin of the Higgs boson mass. The Coleman-Weinberg mechanism is not realized by the Higgs field itself, but by a new scalar field charged under a $\mathsf{SU}(N_S)$ symmetry. We study the conditions that renomalizability and Grand Unification impose on the mass of the scalar and the dimension of the symmetry group; and the prospects of detection of the new scalar boson in a particle accelerator.
 \end{abstract}
 \maketitle
 \section{Introduction}
-Our current understanding of the non-gravitational interactions, the Standard Model (SM) of particle physics, is based on a gauge chiral symmetry group $\mathsf{SU}(3)_C \times \mathsf{SU}(2)_L \times \mathsf{U}(1)_Y $. But this is at odds with both massive fermions and massive gauge bosons. Thus, there seemed to be a big problem, since fermions and the W and Z bosons are experimentally observed to have mass. The solution was devised by Higgs, Brout, Englert, Guralnik, Hagen and Kibble (working on a previous concept by Anderson), called the Higgs mechanism. They proposed the existence of a scalar field charged under $\mathsf{SU}(2)_L \times \mathsf{U}(1)_Y$, the Higgs field, with a potential with degenerated vacua, wich breaks said symmetry. The coupling with the generators of $\mathsf{SU}(2)_L \times \mathsf{U}(1)_Y$ is responsible for the masses of the W and Z bosons in the broken phase, and Yukawa couplings with quarks and leptons cause their masses. 
+Our current understanding of the non-gravitational interactions, the Standard Model (SM) of particle physics, is based on a gauge chiral symmetry group $\mathsf{SU}(3)_C \times \mathsf{SU}(2)_L \times \mathsf{U}(1)_Y $. Nevertheless, massive gauge bosons are not compatible with gauge invariance and massive fermions are not compatible with a chiral symmetry group. Since the $W$ and $Z$ bosons and most of the fermions are observed to have a non-zero mass, this fact appeared to be a contradiction.
+
+The solution was devised by Higgs \cite{Higgs:1964pj}, Brout, Englert \cite{Englert:1964et}, Guralnik, Hagen and Kibble \cite{Guralnik:1964eu} (working on a previous concept by Anderson), called the Higgs mechanism. They proposed the existence of a scalar field charged under the $\mathsf{SU}(2)_L \times \mathsf{U}(1)_Y$ electroweak symmetry, the Higgs field. The potential for the Higgs field has degenerated vacua, and the choice of one vacuum breaks said symmetry. The coupling with the generators of $\mathsf{SU}(2)_L \times \mathsf{U}(1)_Y$ is responsible for the masses of the $W$ and $Z$ bosons in the broken phase, and Yukawa couplings with quarks and leptons cause their masses. The Higgs mechanism allowed the complete formulation of the electroweak model by Glashow, Salam and Weinberg, which today constitutes a cornerstone of the Standard Model.
 
 
-According to the SM, the Higgs field $H$ is characterized by the following potential
+According to the SM, the Higgs field $H(x)$ is characterized by the following potential
 \begin{equation}\label{eq:HiggsPotential}
 V = m^2 H^\dagger H + \lambda_h (H^\dagger H)^2\ .
 \end{equation}
 
-Here, $m^2 < 0$, which means that $H=0$ is unstable. Thus, the Higgs field has a vacuum expectation value (vev) $v_h=\SI{246.2}{\giga\electronvolt}$ (known from masses of the $W$ and $Z$ bosons and muon decay, \cite{Agashe:2014kda}). This causes an spontaneous symmetry breaking that provides the masses for fermions and gauge bosons. The condition for the minimum of the potential is 
+Here, $m^2 < 0$, which means that the solution $\langle H\rangle=0$ is unstable. A minimum of the potential exists for a non-zero value of $\langle H\rangle$. We say that the Higgs field acquires a vacuum expectation value (vev) $v_h = \sqrt{2}\langle H\rangle =\SI{246.2}{\giga\electronvolt}$ (known from masses of the $W$ and $Z$ bosons and muon decay, \cite{Agashe:2014kda}). This causes an spontaneous symmetry breaking that provides the masses for fermions and gauge bosons. 
+
+The condition for the minimum of the potential is 
 \begin{equation}
 m^2 = -2\lambda_h v_h^2\ .
 \end{equation}
@@ -140,20 +145,92 @@ The physical mass of the Higgs boson is determined as the value of the second de
 m_h^2 = 2 \lambda_h v_h^2=-m^2\ .
 \end{equation}
 
-The Higgs boson, the excitation of the Higgs field, has remained for a long time the elusive last piece of the SM to be discovered. The waiting came to an end on 2012, when it was announced the discovery at LHC \cite{Aad:2012tfa,Chatrchyan:2012xdj} of a new resonance at \SI{125}{\giga\electronvolt}. But a \SI{125}{\giga\electronvolt} SM Higgs boson leaves some open questions: vacuum metastability and hierarchy problem.
+The Higgs field can be expanded around its minimum, in the unitarity gauge, as  
+\begin{equation}
+H(x) = \begin{pmatrix}0 \\ h(x) + \frac{v_h}{\sqrt{2}} \end{pmatrix}\ , \label{eq:HiggsExpansion}
+\end{equation}
+where $h(x)$ accounts for the excitations of the Higgs field.
+
+Being a field charged under the $\mathsf{SU}(2)_L\times \mathsf{U}(1)_Y$ electroweak group, the kinetic term for the Higgs field in the lagrangian is
+\begin{equation}
+\mathcal{L}_{\mathrm{kin} H} = \frac{1}{2} D_\mu H^\dagger D^\mu H\ , \label{eq:lagr_kin}
+\end{equation}
+with the covariant derivative
+\begin{equation}
+D_\mu H = \left(\partial_\mu  - \frac{i}{2} g_1 B_\mu -i g_2 W_\mu^a \tau^a  \right) H\ ,
+\end{equation}
+where $B_\mu$ and $W_\mu^a$ are the gauge bosons of the $\mathsf{U}(1)_Y$ and $\mathsf{SU}(2)_L$ respectively, $g_1$ and $g_2$ their coupling constants and $\tau^a = \sigma^a/2$ the generators of the $\mathsf{SU}(2)_L$ group.
+
+
+The two gauge fields $B_\mu$ and $W_\mu^3$ share their quantum numbers, and therefore they can be mixed. The Higgs mechanism does not break the subgroup $\mathsf{U}(1)_{em} \subset \mathsf{SU}(2)_L \times \mathsf{U}(1)_Y$, the gauge group of electromagnetism. The combination of $B_\mu$ and $W_\mu^3$ corresponding to this unbroken subgroup becomes the photon $A_\mu$, while the orthogonal component becomes the $Z$ boson:
+
+\begin{subequations}
+\begin{equation}
+A_\mu = \frac{g_1 W_\mu^3 + g_2 B_\mu }{\sqrt{g_1^2 + g_2^2}}\ ,
+\end{equation}
+\begin{equation}
+Z_\mu = \frac{g_2 W_\mu^3 - g_1 B_\mu }{\sqrt{g_1^2 + g_2^2}}\ .
+\end{equation}
+For convenience, the $W_\mu^1$ and $W_\mu^2$ fields are combined as
+\begin{equation}
+W^\pm_\mu = \frac{1}{\sqrt{2}}(W^1 \mp i W^2)\ .
+\end{equation}
+\end{subequations}
+
+Using all these substitutions, the kinetic term of the lagrangian in \textsc{eq.} \eqref{eq:lagr_kin} can we rewritten as
+\begin{align}
+\mathcal{L}_{\mathrm{kin}H} =& \frac{1}{2}(\partial_\mu h)^2 + \frac{g_2^2}{4} W_\mu^+ W_\mu^- (v_h + \sqrt{2}h)^2 \nonumber\\
+&+ \frac{g_1^2 + g_2^2}{8}Z_\mu Z^\mu (v_h + \sqrt{2}h)^2\ . \label{eq:WZmassterm}
+\end{align}
+
+Due to the fact that $v_h$ is a constant, the lagrangian possesses quadratic terms in the $W$ and $Z$ fields, whose coefficients determine the masses of these fields:
+\begin{equation}
+m_W= \frac{g_2}{2} v_h \qquad\qquad m_Z = \frac{\sqrt{g_1^2 + g_2^2}}{2}v_h\ .
+\end{equation}
+
+The left-handed and right-handed components of the leptons behave differently under $\mathsf{SU}(2)_L \times \mathsf{U}(1)_Y$: while the left-handed neutrino and left-handed electron form a doublet, the right-handed electron is a singlet. The Yukawa coupling between leptons and the Higgs field compatible with this symmetry is given by
+\begin{equation}
+\mathcal{L}_e = - y_e \left[ \begin{pmatrix}\bar{\nu}_e & \bar{e} \end{pmatrix}_L H e_R + \bar{e}_R H^\dagger \begin{pmatrix}\nu_e\\ e\end{pmatrix}_L \right]\ , \label{eq:yukawae}
+\end{equation}
+where $y_e$ is the electron Yukawa coupling.
+
+When the \textsc{eq.} \eqref{eq:HiggsExpansion} is used, the Yukawa lagrangian reads
+\begin{equation}
+\mathcal{L}_e = -\frac{v_h y_e}{\sqrt{2}} (\bar{e}_L e_R + \bar{e}_R e_L)- \frac{y_e}{\sqrt{2}} h (\bar{e}_L e_R + \bar{e}_R e_L) \ .
+\end{equation}
+
+
+The mass of the electron is
+\begin{equation}
+m_e = \frac{v_h y_e}{\sqrt{2}}\ .
+\end{equation} 
+
+The masses of the $d$-type quarks are obtained in an analogous way. For the $u$-type quarks the Yukawa lagrangian is 
+\begin{equation}
+\mathcal{L}_u = -y_u \left[ \begin{pmatrix}\bar{u} & \bar{d} \end{pmatrix}_L H^C u_R + \bar{u}_R (H^C)^\dagger \begin{pmatrix}u\\ d\end{pmatrix}_L \right]\ ,
+\end{equation}
+where $H^C = -i\sigma^2 H^*$ is the charge-conjugated Higgs field.
+
+The study of the $W$ and $Z$ bosons at LEP and Tevatron confirmed most of the electroweak model. Nevertheless, the Higgs boson, the excitation of the Higgs field, has remained for a long time the elusive last piece of the SM to be discovered. The waiting came to an end on 2012, when it was announced the discovery at the LHC  of a new resonance at \SI{125}{\giga\electronvolt} \cite{Aad:2012tfa,Chatrchyan:2012xdj}. But a \SI{125}{\giga\electronvolt} SM Higgs boson leaves some open questions: vacuum metastability and hierarchy problem.
  
-Quantum corrections to the Higgs potential are controlled by the Yukawa coupling of the top quark. The current value of this coupling might mean that $\lambda_h$ turns negative. Thus, the electroweak vacuum would be metastable \cite{EliasMiro:2011aa}, and it would be able to decay to a lower energy vacuum.
+The Higgs potential changes with the energy scale due to the renormalization of the coupling constants. Quantum corrections to the Higgs potential are controlled by the Yukawa coupling of the top quark. The current value of this coupling might mean that $\lambda_h$ turns negative at high energies. Thus, the electroweak vacuum would be metastable, and it would be able to decay to a lower energy vacuum \cite{EliasMiro:2011aa}.
 
 The quadratic term in the Higgs potential is the only dimesionful parameter in the SM. Naturalness indicates that the Higgs mass should be similar to the other energy scale in any relativistic quantum field theory, the Planck scale. But the Higgs mass and the Planck energy are quite different, in fact they are 17 orders of magnitude apart, which leads to the so-called hierarchy problem \cite{Iso:2013aqa}. 
 
-An alternative proposal for the origin of the Higgs boson mass is due to Coleman and Weinberg \cite{Coleman:1973jx} (CW). In this model, quadratic term is set to zero, and the physical Higgs mass is generated by radiative corrections to the quartic term in a process called dimensional transmutation. In this way, the CW lagrangian is classically scale invariant and is free of the hierarchy problem. The large hierarchy between the Planck and the Higgs scales is exponentially controlled by the running of the quartic coupling. 
+An alternative proposal for the origin of the Higgs boson mass is due to Coleman and Weinberg (CW) \cite{Coleman:1973jx}. In this model, the quadratic term is set to zero, and the physical Higgs mass is generated by quantum radiative corrections to the quartic term in a process called dimensional transmutation. In this way, the CW lagrangian is classically scale invariant and free of the hierarchy problem. The large hierarchy between the Planck and the Higgs scales is exponentially controlled by the running of the quartic coupling. 
 
 The CW classical potential is
 \begin{equation}
 V_{CW}^{(0)} = \lambda_h (H^\dagger H)^2\ .
 \end{equation}
 
-In the quantum realm $\lambda_h$ is no longer a constant, but depends on the energy scale - that can be identified with the vev $v_h$. In the one-loop approximation, the dependence is 
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{potential}
+\caption{Solid line: classical Coleman-Weinberg potential. Dashed line: one-loop Coleman-Weinberg potential.}\label{fig:CWpotential}
+\end{figure} 
+
+In the quantum realm $\lambda_h$ is no longer a constant, but depends on the energy scale, that can be identified with the vev $v_h$. In the one-loop approximation, the dependence is 
 \begin{equation}
 \lambda(v_h) \approx \beta_h \ln\left(\frac{v_h}{M}\right)\ , 
 \end{equation}
@@ -163,33 +240,29 @@ where $M$ is an arbitrary parameter with dimensions of mass. The one-loop CW pot
 V_{CW}^{(1)} \approx \beta_h v_h^4 \ln \left(\frac{v_h}{M}\right)\ .
 \end{equation}
 
-The classical potential only has a minimum at the origin, and therefore the vacuum state doesn't break the electroweak symmetry. But the radiative corrections move this minimum to 
+The classical potential only has a minimum at the origin, and therefore the vacuum state does not break the electroweak symmetry. But the radiative corrections displace this minimum to 
 \begin{equation}
 v_h = \mathrm{e}^{-1/4} M\ ,
 \end{equation}
-which is a stable minimum, this is, the curvature at the extremum is $m_h^2 > 0$. The comparison between the classical and the one-loop CW potential is shown in \textsc{fig.} \ref{fig:CWpotential}
-
-\begin{figure}[b]
-\centering
-\includegraphics[width=\columnwidth]{potential}
-\caption{Solid line: classical Coleman-Weinberg potential. Dashed line: one-loop Coleman-Weinberg potential.}\label{fig:CWpotential}
-\end{figure} 
+which is a stable minimum, this is, the curvature at the extremum is $m_h^2 > 0$. The comparison between the classical and the one-loop CW potential is shown in \textsc{fig.} \ref{fig:CWpotential}.
 
 Unfortunately, in the SM this running is dominated by the top Yukawa coupling, and the predicted value for the Higgs mass is far too low.  
 
 In the last few years, the CW mechanism has regained popularity, and some modifications have been proposed \cite{Dermisek:2013pta, Hill:2014mqa, Antipin:2015kgh}. We will study a model where the CW is not realized by the Higgs boson itself, but by an additional scalar boson coupled to it. In the context of dark matter and inflation, such models are called \textit{portal Higgs} \cite{Patt:2006fw, Englert:2013gz}, and the new scalar field is usually either a singlet or a $\mathsf{SU}(2)$ doublet. We will consider a scalar field charged under a more general $\mathsf{SU}(N_S)$ symmetry.
 
-This document is organized as follows: In section \ref{sect:model} we present this model. In section \ref{sect:RG} we examine the Renormalization Group flow of the coupling constants and the conditions required by the renormalizability of the model. In section \ref{sec:mixing} we study whether the Higgs field and the new field mix to form mass eigenstates. In section \ref{sec:GUT} we focus in the behavior of the couplings in the Grand Unification Theory (GUT) energy scale. In section \ref{sect:pheno} we study the phenomenology of the model, namely the decay and production of the new scalar particle.
+This master thesis is organized as follows: In section \ref{sect:model} we present our model. In section \ref{sect:RG} we examine the Renormalization Group flow of the coupling constants and the conditions required by the renormalizability of the model. In section \ref{sec:mixing} we study whether the Higgs field and the new field mix to form mass eigenstates. In section \ref{sec:GUT} we focus in the behavior of the couplings in the Grand Unification Theory (GUT) energy scale. In section \ref{sect:pheno} we study the phenomenology of the model, namely the decay and production of the new scalar particle. Finally in section \ref{sect:conclusion} we summarize and discuss the connection of this model with further topics in particle physics.
 
 \section{The model} \label{sect:model}
-In our model, the Higgs $H$ is a massless scalar boson in the fundamental representation of $\mathsf{SU}(2)$. In addition, we have another massless scalar field $S$ in the fundamental representation of a $\mathsf{SU}(N_S)$ gauge symmetry. Their potential is
+In our model, the Higgs $H$ is a massless scalar boson in the fundamental representation of the $\mathsf{SU}(2)_L \times \mathsf{U}(1)_Y$ electroweak symmetry group. In addition, we have another massless scalar field $S$ in the fundamental representation of a $\mathsf{SU}(N_S)$ gauge symmetry group. Their potential is
 \begin{equation}\label{eq:CWpotential}
 V = \lambda_h (H^\dagger H)^2 + \lambda_{hs} (H^\dagger H) (S^\dagger S) + \lambda_s (S^\dagger S)^2\ .
 \end{equation}
 
-The model has three different phases: at large energies, both the $\mathsf{SU}(N_S)$ and the  $\mathsf{SU}(2)_L \times \mathsf{U}(1)_Y$ symmetries remain unbroken. When the energy scale gets lower, the scalar $S$ breaks the $\mathsf{SU}(N_S)$ symmetry a la Coleman-Weinberg, and the Higgs potential acquires its SM form. Finally, at low energies the electroweak symmetry gets broken and all particles get their masses as usual.
+It is important to note that the three terms are quartic in the scalar fields. Therefore, the coupling constants $\lambda_h$, $\lambda_s$ and $\lambda_{hs}$ are dimensionless.
 
-We expand the field $S$ around its vev $v_s$, $|S| = v_s + \frac{\sigma}{\sqrt{2}}$. The couplings depend on the physical field $\sigma$ according to $\lambda(|S|) = \beta \log(|S|/M)$:
+The model has three different phases separated by two symmetry breakings: at high energies, both the $\mathsf{SU}(N_S)$ and the  $\mathsf{SU}(2)_L \times \mathsf{U}(1)_Y$ symmetries remain unbroken. When the energy scale gets lower, the scalar $S$ breaks the $\mathsf{SU}(N_S)$ symmetry a la Coleman-Weinberg, and the Higgs potential acquires its SM form. Finally, at low energies the electroweak symmetry is broken and all particles get their masses as usual.
+
+We will focus on the symmetry breaking of the $\mathsf{SU}(N_S)$ group. We expand the field $S$ around its vev $v_s$, $|S| = v_s + \frac{\sigma}{\sqrt{2}}$. The couplings depend on the physical field $\sigma$ according to $\lambda(|S|) = \beta \log(|S|/M)$. The first terms of the series expansion are:
 \begin{subequations}
 \begin{align}
 \lambda_h\left(v_s + \frac{\sigma}{\sqrt{2}}\right) &\approx \lambda_h(v_s) + \beta_h \left(\frac{\sigma}{\sqrt{2}v_s}-\frac{\sigma^2}{4 v_s^2}\right)\ ,\\
@@ -198,12 +271,12 @@ We expand the field $S$ around its vev $v_s$, $|S| = v_s + \frac{\sigma}{\sqrt{2
 \end{align}
 \end{subequations}
 
-The condition for the minimum of the potential is:
+The condition for the minimum of the potential is that its first derivative vanishes:
 \begin{equation}
 \frac{\dif V_\mathrm{eff}}{\dif \sigma}\Big|_{\substack{\sigma=0\\ H=0}} = \frac{v_s^3}{\sqrt{2}}(4\lambda_s + \beta_s) = 0\ ,  \qquad 4\lambda_s = - \beta_s \ . 
 \end{equation}
 
-The mass of the scalar is now given by
+The mass of the scalar is now given by the value of the second derivative of the potential in the minimum:
 \begin{equation}
 m_s^2 = \frac{\dif^2 V_\mathrm{eff}}{\dif \sigma^2}\Big|_{\substack{\sigma=0\\ H=0}} \! =\frac{v_s^2}{2} (12 \lambda_s +7\beta_s) =2\beta_s v_s^2 = -8 \lambda_s v_s^2\ ,
 \end{equation}
@@ -211,7 +284,7 @@ where we learn that $\beta_s > 0 $ and $ \lambda_s < 0$. We now can rewrite \tex
 \begin{equation}
 V_\mathrm{eff} = V_H (H) + V_S (\sigma) + V_\mathrm{int}(H, \sigma)\ ,
 \end{equation}
-with
+where we have split the potential in the following parts
 \begin{subequations}
 \begin{align}
 V_H =& m^2 H^\dagger H + \lambda_h (H^\dagger H)^2\label{eq:quadraticCW}\ , \\
@@ -227,19 +300,26 @@ m^2 = -m_\eta^2 = 2 \lambda_{hs} v_s^2\ .
 
 Therefore, $\lambda_{hs} < 0$. The mass of the scalar $\sigma$ in terms of the Higgs mass is
 \begin{equation}
-m_\sigma^2 = \frac{4\lambda_s}{\lambda_{hs}}m_h^2\ .
+m_\sigma^2 = \frac{4\lambda_s}{\lambda_{hs}}m_\eta^2\ .
 \end{equation}
 
-Once the Higgs potential is that of \textsc{eq.} \eqref{eq:quadraticCW}, the Higgs field acquires its vev $|H| = v_h + \frac{\eta}{\sqrt{2}}$ in the usual way and breaks the $\mathsf{SU}(2)_L\times \mathsf{U}(1)_Y$ electroweak symmetry.
+Once the Higgs potential is that of \textsc{eq.} \eqref{eq:quadraticCW}, the Higgs field acquires its vev $|H| = v_h + \frac{\eta}{\sqrt{2}}$ in the usual way and breaks the $\mathsf{SU}(2)_L\times \mathsf{U}(1)_Y$ electroweak symmetry. We will use the Standard Model values $v_h = \SI{246}{\giga\electronvolt}$ and $m_\eta = \SI{125}{\giga\electronvolt}$ -- in fact $m_\eta$ is not the Higgs boson mass, as we will explain in section \ref{sec:mixing}, but the correction is very small.
 
 \section{Renormalization Group}\label{sect:RG}
+\begin{figure*}[t]
+\centering
+\begin{minipage}[b]{0.49\textwidth}
+\includegraphics[width=\columnwidth]{scenario1}
+\caption{Renormalization Group Flow of the coupling constants with $m_\sigma = \SI{3}{\tera\electronvolt}$ and $N_S=100$.}\label{fig:sce1}
+\end{minipage}
+\hfill
+\begin{minipage}[b]{0.49\textwidth}
+\includegraphics[width=\columnwidth]{scenario2}
+\caption{Renormalization Group Flow of the coupling constants with $m_\sigma = \SI{10}{\giga\electronvolt}$ and $N_S=2$.}\label{fig:sce2}
+\end{minipage}
+\end{figure*}
 
-\begin{comment}
-\begin{figure}[t]
-\includegraphics[width=0.5\textwidth]{running1}
-\caption{The RG evolution of the quartic couplings of our model, using $N_S = 30$.}\label{fig:RGrunning1}
-\end{figure}
-\end{comment}
+
 Radiative corrections are responsible of the running of coupling constants as the energy scale changes. All results derived in the previous section are to be evaluated at the scale $\mu = v_s$. The running is calculated by means of the Renormalization Group Equations (RGE).
 
 The renormalization group equations for the couplings, obtained at one loop, are \cite{Dermisek:2013pta}:
@@ -253,7 +333,7 @@ where $y_t$ is the top Yukawa coupling and $g_4$ is the gauge coupling of the ne
 16\pi^2 \frac{\dif y_t}{\dif t} &= y_t\left(\frac{9}{2}y_t^2 -8g_3^2\right)\ ,\\
 16\pi^2 \frac{\dif g_3}{\dif t} &= -\left(11-\frac{2}{3}n_f\right)g_3^3\ .
 \end{align}
-We have only considered the contribution of the strong gauge coupling $g_3$ to $y_t$ and neglected those of the electroweak couplings.
+We have only considered the contribution of the strong gauge coupling $g_3$ to $\lambda_h$ and $y_t$, and neglected those of the electroweak couplings $g_1$ and $g_2$.
 
 If we add $N_f$ Dirac fermions in the fundamental representation of $\mathsf{SU}(N_S)$, the renormalization group equation for $g_4$ is 
 \begin{equation}
@@ -265,21 +345,16 @@ We will start discusing the case without the new gauge symmetry by setting $g_4=
 \lambda_{hs}=-\sqrt{-32\pi^2 \lambda_s -2(4+N_S)\lambda_s^2}\ .
 \end{equation}
 
-In order to be correctly defined, we need
+The formula above requires 
 \begin{equation}
 |\lambda_s| \leq \frac{16\pi^2}{4+N_S}\ . \label{eq:lim_ls}
 \end{equation}
 
-We can write $\lambda_s$ in terms of $m_\sigma$
+We can write $\lambda_s$ in terms of $m_\sigma$ as
 \begin{equation}\label{eq:ls}
 \lambda_s = \frac{-16\pi^2}{4+N_S+\frac{8m_\eta^4}{m_\sigma^4}}\ .
 \end{equation}
 
-\begin{figure}[t]
-\centering
-\includegraphics[width=\columnwidth]{scenario1}
-\caption{Renormalization Group Flow of the coupling constants with $m_\sigma = \SI{3}{\tera\electronvolt}$ and $N_S=100$.}\label{fig:sce1}
-\end{figure}
 
 In order to solve the RG equations, we use the SM value of $\lambda_h$ at $\mu = m_\eta$, and \textsc{Eqs.}\ \eqref{eq:lhs} and \eqref{eq:ls} at $\mu=v_s$. Special care must be taken to make sure that the coupling constants remain in the perturbative regime ( i. e. $|\lambda| \leq 3$). Two different scenarios for $\lambda_s$ and $\lambda_{hs}$ are possible:
 \begin{itemize}
@@ -294,7 +369,7 @@ The perturbativity of $\lambda_{hs}$ requires $|\lambda_s| < 0.03$, therefore $m
 
 \item When $|\lambda_s|$ approaches its maximum value allowed by \textsc{eq.} \eqref{eq:lim_ls},
 \begin{equation}
-|\lambda_s| = \frac{16\pi^2}{4+N_S} - \delta \ \ \mathrm{as}\ \ \delta\to 0\ ,
+|\lambda_s| = \frac{16\pi^2}{4+N_S} - \delta \ \ \mathrm{as}\ \ \delta\to 0^+\ ,
 \end{equation}
 the other parameters are
 \begin{equation}
@@ -307,35 +382,22 @@ m_\sigma = 2 m_\eta \frac{1}{\sqrt{N_S + 4 }}\left(\frac{8\pi^2}{\delta}\right)^
 In this case we need $N_s \geq 50$ if we insist on $|\lambda_s| \leq 3$. The mass of the scalar $S$ may grow as large as desired.
 \end{itemize}
 
-\begin{figure}[t]
-\centering
-\includegraphics[width=\columnwidth]{scenario2}
-\caption{Renormalization Group Flow of the coupling constants with $m_\sigma = \SI{10}{\giga\electronvolt}$ and $N_S=2$.}\label{fig:sce2}
-\end{figure}
-
-As an example of the second scenario, in \textsc{FIG.}\ref{fig:sce1} we show the behaviour of the coupling constants when $m_\sigma = \SI{3}{\tera\electronvolt}$ and $N_S = 100$. This set-up presents the nice feature that the three couplings meet at zero around the GUT scale. 
+As an example of the second scenario, in \textsc{FIG.}\ref{fig:sce1} we show the behaviour of the coupling constants when $m_\sigma = \SI{3}{\tera\electronvolt}$ and $N_S = 100$. This set-up presents the nice feature that the three couplings nearly meet at zero around the GUT scale. 
 
 
 
 On the other hand, in the first scenario, the absolute value of the coupling constants grows with the energy until they reach a Landau pole at low energy. To retain the perturbativity until the Planck scale, the mass of the new scalar must be extremely low. In \textsc{Fig.} \ref{fig:sce2} we show the running of the couplings when $m_\sigma =\SI{10}{\giga\electronvolt}$ and $N_S = 2$. In this case, the unification of the constants at high energies is no longer possible. 
 
+We also tried adding the new $\mathsf{SU}(N_S)$ symmetry group as a gauge group with its own dynamics, and with a coupling $g_4\neq 0$. When $g_4$ is small, of order $g_4\sim 0.1$, the Renormalization Group Equations do not change qualitatively. But in the case $g_4 \gg 0.1$, the perturbativity of the theory breaks down at low energies. Therefore, we have decided not to consider non-zero values of $g_4$ at all.
 
-
-
-We also tried adding the new $\mathsf{SU}(N_S)$ symmetry group as a gauge group with its own dynamics, and with a coupling $g_4\neq 0$. When $g_4$ is small, of order $g_4\sim 0.1$, the Renormalization Group Equations dont't change qualitatively. But in the case $g_4 \gg 0.1$, the perturbativity of the theory breaks down at low energies. Therefore, we have decided not to consider non-zero values of $g_4$ at all.
-
-The Renormalization Group flow has been computed using a fourt order Runge-Kutta integrator implemented in \texttt{Python}\footnote{Source code can be found at \url{https://github.com/jorgealda/TFM/tree/master/programas}}. We have used two-loop RG equations for the SM-like couplings (Yukawa couplings, gauge couplings and part of the $\lambda_h$)\cite{Arason:1991ic} , and one-loop RG equations for the rest.
+The Renormalization Group flow has been computed using a fourt order Runge-Kutta integrator implemented in \texttt{Python} \footnote{Source code can be found at \url{https://github.com/jorgealda/TFM/tree/master/programas}}. We have used two-loop RG equations for the SM-like couplings (Yukawa couplings, gauge couplings and part of the $\lambda_h$)\cite{Arason:1991ic}, and one-loop RG equations for the rest.
 
 \section{Mixing of the fields} \label{sec:mixing}
-\begin{figure}[t]
-\centering
-\includegraphics[width=\columnwidth]{angle}
-\caption{Scalar mixing angle $\theta$ as a function of the mass $m_\sigma$ of the \textit{unmixed} field $S$. The value of $N_S$ is set to $N_S=150$.}\label{fig:angle}
-\end{figure}
 
-When both of the symmetries are broken, the $\eta$ and $\sigma$ fields are no longer mass eigenstates, since there is a quadratic term in the interaction potential that mixes them. The observable fields in this regime will be a combination of $\phi$ and $\sigma$, with different values for the masses. Before the breaking of the $\mathsf{SU}(2)$ group, the different symmetry protects the fields from mixing.
 
-The quadratic term in the potential can be written as a quadratic form $V_q = \frac{1}{2}\Phi^\dagger \mathbb{M}^2 \Phi$, where $\Phi^\dagger = \begin{pmatrix}\eta & \sigma \end{pmatrix} $. The fields after the mixing will be the eigenstates of $\mathbb{M}^2$, and their squared masses are given by the eigenvalues of $\mathbb{M}^2$.
+When both of the symmetries are broken, the $\eta$ and $\sigma$ fields are no longer mass eigenstates, since there is a quadratic term in the interaction potential that mixes them. The observable fields in this regime will be a combination of $\eta$ and $\sigma$, with different values for the masses. Before the breaking of the $\mathsf{SU}(2)_L\times \mathsf{U}(1)_Y$ group, the different symmetry protects the fields from mixing.
+
+The quadratic term in the potential can be written as a quadratic form $V_q = \frac{1}{2}\Phi^\dagger \mathsf{M}^2 \Phi$, where $\Phi^\dagger = \begin{pmatrix}\eta & \sigma \end{pmatrix} $. The fields after the mixing will be the eigenstates of $\mathsf{M}^2$, and their squared masses are given by the eigenvalues of $\mathsf{M}^2$.
 
 The quadratic part of the potential in the completely broken phase is
 \begin{align}
@@ -347,7 +409,11 @@ where
 m_{\eta\sigma}^2 = \frac{v_h}{\sqrt{2}} \left((2\lambda_{hs} + \beta_{hs})v_s + \beta_h \frac{v_h^2}{v_s} \right)\ .
 \end{equation} 
 
-
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{angle}
+\caption{Scalar mixing angle $\theta$ as a function of the mass $m_\sigma$ of the \textit{unmixed} field $S$. The value of $N_S$ is set to $N_S=150$.}\label{fig:angle}
+\end{figure}
 
 The ``physical'' fields $(h, s)$ are given by a rotation of the $(\eta, \sigma)$ fields 
 \begin{equation}
@@ -364,14 +430,14 @@ m_h^2 = m_\eta^2 \cos^2 \theta + m_\sigma^2 \sin^2 \theta - 2 m_{\eta\sigma}^2 \
 m_s^2 = m_\sigma^2 \cos^2 \theta + m_\eta^2 \sin^2 \theta + 2 m_{\eta\sigma}^2 \sin \theta \cos \theta\ .
 \end{align}
 
-In the second scenario ($m_\sigma \gg m_\eta$, $N_S \geq 50$, $g_4=0$), the scalar mixing angle is found to be small, as is depicted in \textsc{fig.} \ref{fig:angle}. As the difference between the mass terms $m_\eta$ and $m_\sigma$ grows larger, the scalar mixing angle decreases rapidly. When $m_\sigma > \SI{2}{\tera\electronvolt}$, the scalar mixing angle is $\theta < \num{e-3}$. Thus, identifying $\eta$ as the ``true'' Higgs boson and $\sigma$ as another scalar particle is a very precise approximation. 
+In the second scenario ($m_\sigma \gg m_\eta$, $N_S \geq 50$, $g_4=0$), the scalar mixing angle is found to be small, as is depicted in \textsc{fig.} \ref{fig:angle}. As the difference between the mass terms $m_\eta$ and $m_\sigma$ increases, the scalar mixing angle decreases rapidly: when $m_\sigma > \SI{2}{\tera\electronvolt}$, the scalar mixing angle is $\theta < \num{e-3}$. Thus, identifying $\eta$ as the ``true'' Higgs boson and $\sigma$ as another, independent, scalar particle is a very precise approximation. 
 
-In the first scenario we find that the stationary point of the potential is in fact a saddle point, as the matrix $\mathcal{M}^2$ is not positive definite. Therefore, this solution is ruled out.
+In the first scenario we find that the stationary point of the potential is in fact a saddle point, as the matrix $\mathsf{M}^2$ is not positive definite. Therefore, this solution is ruled out. In order to have a potential with a true minimum, the condition $m_\sigma \geq m_\eta = \SI{125}{\giga\electronvolt}$ must be fulfilled.
 
 
 \section{Unification of the constants}\label{sec:GUT}
 
-A common feature of most of the Beyond Standard Model theories is that they predict some sort of unification of the coupling constants at large energies, at the so-called Grand Unification Theory (GUT) scale. In \textsc{Fig.}\ref{fig:sce1} we have glimpsed that this might be the case in our model. In this section we will study this situation in more detail.
+A common feature of most of the Beyond Standard Model theories is that they predict some sort of unification of the coupling constants at high energies, at the so-called Grand Unification Theory (GUT) scale. In \textsc{Fig.}\ref{fig:sce1} we have glimpsed that this might be the case in our model. In this section we will study this situation in more detail.
 
 In order to quantify if the three quartic couplings are unified at a certain energy scale, we will define an \textit{unification distance} $d$ as
 \begin{equation}
@@ -379,47 +445,55 @@ d = \frac{1}{3}(|\lambda_h - \lambda_s| + |\lambda_h - \lambda_{hs}|+ |\lambda_s
 \end{equation}
 
 Obviously, a perfect unification of the three constants happens if and only if $d=0$.
-
-\begin{figure}[t]
+\begin{figure*}[t]
 \centering
+\begin{minipage}[b]{0.49\textwidth}
 \includegraphics[width=\columnwidth]{GUTdistance}
 \caption{Unification distance as a function of the mass $m_\sigma$ (horizontal axis) and $N_S$ (color code).}\label{fig:GUTdistance}
-\end{figure}
-\begin{figure}[t]
-\centering
+\end{minipage}
+\hfill
+\begin{minipage}[b]{0.49\textwidth}
 \includegraphics[width=\columnwidth]{GUTscale}
 \caption{Unification scale as a function of the mass $m_\sigma$ (horizontal axis) and $N_S$ (color code).}\label{fig:GUTscale}
-\end{figure}
+\end{minipage}
+\end{figure*}
+We will pick a large sample of points in the $(m_\sigma, N_S)$ space of parameters to examine the unification of the couplings. The samples are chosen randomly with $N_S \leq 250$ and $m_\sigma \leq \SI{10}{\tera\electronvolt}$, and those that do not preserve the perturbativaty up to the Planck scale are discarded. The final set consists of one thousand samples.
 
-We will pick a large sample of points in the $(m_\sigma, N_S)$ space of parameters to examine the unification of the couplings. The samples are chosen randomly with $N_S \leq 250$ and $m_\sigma \leq \SI{10}{\tera\electronvolt}$, and only those that preserve the perturbativaty up to the Planck scale are preserved. The final set consists of one thousand samples.
+For each pair of parameters $(m_\sigma, N_S)$ we determine the minimum of the unification scale, $d_U$, and the energy scale which the minimum is attained at, $\mu_U$.  In \textsc{fig.} \ref{fig:GUTdistance} and \textsc{fig.} \ref{fig:GUTscale} we show the unification distance and scale as a function of $m_\sigma$. 
 
-For each pair of parameters $(m_\sigma, N_S)$ we determine the minimum of the unification scale, $d_U$, and the energy scale which the minimum is attained at, $\mu_U$.  In \textsc{fig.} \ref{fig:GUTdistance} and \textsc{fig.} \ref{fig:GUTscale} we show the unification distance and scale as a function of $m_\sigma$. We find that both $d_U$ and $\mu_U$ depend largely on $m_\sigma$, and only exhibit a small dependence on $N_S$.
+We find that the parameter $m_\sigma$ determines the values of both $d_U$ and $\mu_U$, while $N_S$ only changes them a little. At a fixed value of $m_\sigma$, a larger value of $N_S$ means a better unification (i.e. a lower unification distance) and a slightly larger unification scale. 
 
 
-When the mass $m_\sigma$ is smaller than \SI{400}{\giga\electronvolt} the unification happens at energies above the Planck scale, so we can't speak of a true unification. With higher masses the unification scale remains small, of order $d_U \sim 0.01$, and the unification scale grows with the mass. To match the Grand Unification Theory scale, $\mu_{\mathrm{GUT}}\approx \SI{e15}{\giga\electronvolt}$, the scalar should have a mass between \SI{4}{\tera\electronvolt} and \SI{8}{\tera\electronvolt}. At a fixed value of $m_\sigma$, a larger value of $N_S$ means a better unification (i.e. a lower unification distance) and a slightly larger unification scale. 
+When the mass $m_\sigma$ is smaller than \SI{400}{\giga\electronvolt} the unification happens at energies above the Planck scale, so we cannot speak of a true unification. With higher masses the unification scale remains small, of order $d_U \sim 0.01$, and the unification scale grows with the mass. To match the Grand Unification Theory scale, $\mu_{\mathrm{GUT}}\approx \SI{e15}{\giga\electronvolt}$, the scalar should have a mass between \SI{4}{\tera\electronvolt} and \SI{8}{\tera\electronvolt}. 
+
+
 
 \section{Phenomenology of the model}\label{sect:pheno}
-\begin{figure}[b]
+\begin{figure*}[t]
 \centering
-\includegraphics[width=\columnwidth]{diagrams}
+\includegraphics[width=0.8\textwidth]{diagrams}
 \caption{Feynman diagrams for the decay and production of the scalar $s$ (double dashed line). $a)$ Decay to two Higgs bosons (single dashed line). $b)$ Decay to a top-antitop pair. $c)$ Decay to two weak bosons. $d)$ Production via gluon fusion.}\label{fig:diagrams}
-\end{figure}
+\end{figure*}
+The model that we have presented predicts the existence of new particles. It is important to make testable predictions about the possibilities of detection in a particle collider. 
+
 
 In this model we have added a multiplet of $N_S$ scalar fields to the SM model. Initially, they only interact with the Higgs field via the $\lambda_{hs}$ coupling.
 
-Nevertheless, after the symmetry breaking, one of the scalar fields gains a mass, and what is more important, mixes with the Higgs boson. Due to this mixing, the scalar $s$ is able to decay in the same channels that the Higgs (fermion-antifermion, WW, ZZ,  gluon-gluon, $\gamma\gamma$, Z$\gamma$), but the amplitudes are suppressed by a factor $\sin \theta$, and the cross-sections and decay widths by a factor $\sin^2\theta$. 
+Nevertheless, after the symmetry breaking, one of the scalar fields gains a mass, and what is more important, mixes with the Higgs boson. Due to this mixing, the scalar $s$ is able to decay in the same channels that the Higgs (fermion-antifermion, $WW$, $ZZ$,  gluon-gluon, $\gamma\gamma$, $Z\gamma$), but the amplitudes are suppressed by a factor $\sin \theta$, and the cross-sections and decay widths by a factor $\sin^2\theta$ with respect to those of the Higgs boson. 
 
-The coupling between one scalar $s$ and two Higgs bosons $h$ (see \textsc{fig.} \ref{fig:diagrams}$a$) arises from the interaction potential in \textsc{eq.} \eqref{eq:interlagr} and the cubic term in \textsc{eq.} \eqref{eq:Spotential}. After performing the spontaneous breaking of $H$ into $\phi$ and the mixing of $\phi$ and $\sigma$, this interaction is
+The coupling between one scalar $s$ and two Higgs bosons $h$ (see \textsc{fig.} \ref{fig:diagrams}$a$) arises from the interaction potential in \textsc{eq.} \eqref{eq:interlagr} and the cubic term in \textsc{eq.} \eqref{eq:Spotential}. After performing the spontaneous breaking of $H$ into $\eta$ and the mixing of $\eta$ and $\sigma$, this interaction is
 \begin{equation}
 \mathcal{L}_{hhs} = \frac{\kappa}{2} h^2 s\ ,
 \end{equation}
-where
-{\scriptsize\begin{align}
-\kappa =& \left(\frac{(2\lambda_{hs} + \beta_{hs})v_s}{\sqrt{2}} + 6 v_h^2\frac{\beta_h}{\sqrt{2} v_s} \right)\cos^3 \theta \nonumber\\
-&+ \left(-4\sqrt{2}v_h \frac{2\lambda_{hs} + 3\beta_{hs}}{4} - 8\sqrt{2}v_h^3  \frac{\beta_h}{4 v_s^2} \right)\cos^2\theta \sin \theta \nonumber\\
-&+ \left(-2\frac{(2\lambda_{hs} + \beta_{hs})v_s}{\sqrt{2}} -12 v_h^2\frac{\beta_h}{\sqrt{2} v_s} +6\sqrt{2}(\lambda_s+\beta_s) v_s \right)\cos\theta \sin^2\theta \nonumber\\
-&+\left(2\sqrt{2}v_h \frac{2\lambda_{hs} + 3\beta_{hs}}{4} -4\sqrt{2}v_h^3 \frac{\beta_h}{4 v_s^2} \right)\sin^3\theta\ .
-\end{align}}
+where we have defined
+\begin{widetext}
+\begin{align}
+\kappa =& \left(\frac{(2\lambda_{hs} + \beta_{hs})v_s}{\sqrt{2}} + 6 v_h^2\frac{\beta_h}{\sqrt{2} v_s} \right)\cos^3 \theta %\nonumber\\
++ \left(-4\sqrt{2}v_h \frac{2\lambda_{hs} + 3\beta_{hs}}{4} - 8\sqrt{2}v_h^3  \frac{\beta_h}{4 v_s^2} \right)\cos^2\theta \sin \theta \\
+&+ \left(-2\frac{(2\lambda_{hs} + \beta_{hs})v_s}{\sqrt{2}} -12 v_h^2\frac{\beta_h}{\sqrt{2} v_s} +6\sqrt{2}(\lambda_s+\beta_s) v_s \right)\cos\theta \sin^2\theta %\nonumber\\
++\left(2\sqrt{2}v_h \frac{2\lambda_{hs} + 3\beta_{hs}}{4} -4\sqrt{2}v_h^3 \frac{\beta_h}{4 v_s^2} \right)\sin^3\theta\ . \nonumber
+\end{align}
+\end{widetext}
 
 The decay amplitude for this process is simply
 \begin{equation}
@@ -430,9 +504,15 @@ and the decay width, using the well-known phase space for two identical particle
 \Gamma(s\to hh) = \frac{|\mathcal{M}|^2}{8\pi m_s}\sqrt{1-\frac{4m_h^2}{m_s^2}} = \frac{\kappa^2}{8\pi m_s}\sqrt{1-\frac{4m_h^2}{m_s^2}}\ .
 \end{equation}
 
-The interaction between the top quark and $s$ (\textsc{fig.}\ref{fig:diagrams}$b$) comes from the Yukawa coupling 
+\begin{figure}[b]
+\centering
+\includegraphics[width=\columnwidth]{totalwidth}
+\caption{Total decay width (considering $hh$, $t\bar{t}$, $WW$ and $ZZ$ channels) of the scalar $s$. We have set $N_S=150$.}\label{fig:totalwidth}
+\end{figure}
+
+The interaction between the top quark and $s$ (\textsc{fig.}\ref{fig:diagrams}$b$) comes from the Yukawa coupling similar to \textsc{eq.} \eqref{eq:yukawae}
 \begin{equation}
-\mathcal{L}_t = -\frac{m_t}{v_h}\bar{t}\phi t=  -\frac{m_t}{v_h}\sin\theta\, \bar{t} s t-\frac{m_t}{v_h}\cos\theta\, \bar{t} h t\ ,
+\mathcal{L}_t = -\frac{m_t}{v_h}\bar{t}\eta t=  -\frac{m_t}{v_h}\sin\theta\, \bar{t} s t-\frac{m_t}{v_h}\cos\theta\, \bar{t} h t\ ,
 \end{equation}
 so the squared amplitude decay is 
 \begin{align}
@@ -444,7 +524,7 @@ and the resulting decay width is
 \Gamma(s \to t \bar{t})= \frac{3 m_t^2 m_s \sin^2\theta}{8\pi  v_h^2} \left(1-\frac{4 m_t^2}{m_s^2}\right)^{3/2} \ ,
 \end{equation}
 
-In the same fashion, the interaction with the $W$ and $Z$ bosons (\textsc{fig.}\ref{fig:diagrams}$b$) arises from
+In the same fashion, the interaction with the $W$ and $Z$ bosons (\textsc{fig.}\ref{fig:diagrams}$b$) arises from the lagrangian in \textsc{eq.} \eqref{eq:WZmassterm}
 \begin{align}
 \mathcal{L}_W =& 2 \frac{m_W^2}{v_h}\phi W^+_\mu W^{-\mu} + \frac{m_Z^2}{v_h} \phi Z_\mu Z^\mu\nonumber\\
 =& 2 \sin \theta \frac{m_W^2}{v_h}s W^+_\mu W^{-\mu} + \sin\theta \frac{m_Z^2}{v_h} s Z_\mu Z^\mu + \cdots
@@ -466,12 +546,7 @@ The decay width to $ZZ$ displays an extra $1/2$ factor due to the symmetry of id
 \left(3+\frac{m_s^4}{4 m_Z^4}-\frac{m_s^2}{m_Z^2} \right)\ .
 \end{equation}
 
-\begin{figure}[t]
-\centering
-\includegraphics[width=\columnwidth]{totalwidth}
-\caption{Total decay width (considering $hh$, $t\bar{t}$, $WW$ and $ZZ$ channels) of the scalar $s$. We have set $N_S=150$.}\label{fig:totalwidth}
-\end{figure}
-\begin{figure}[t]
+\begin{figure}[b]
 \centering
 \includegraphics[width=\columnwidth]{BR}
 \caption{Branching ratios for the decay of $s$ in the $hh$, $t\bar{t}$, $WW$ and $ZZ$ channels. We have set $N_S=150$.}\label{fig:BR}
@@ -485,7 +560,7 @@ The production of the particle $s$ in a proton-proton accelerator as the LHC wou
 The cross section for the $s$ scalar is that of the Higgs boson but suppressed by a factor $\sin^2\theta$. The partonic cross-section is \cite{Spira:1995rr}, at lowest order, 
 \begin{align}
 \hat{\sigma}(\hat{s}) = \frac{\sigma_0}{m_s^2}\delta(\hat{s}-m_s^2)\ ,\nonumber\\
-\sigma_0 = \frac{G_F \alpha_S^2 \sin^2 \theta}{128\sqrt{2} \pi} \left|\frac{\tau_t + (\tau_t-1)f(\tau_t)}{\tau^2}  \right|^2\ ,
+\sigma_0 = \frac{G_F \alpha_S^2 \sin^2 \theta}{128\sqrt{2} \pi} \left|\frac{\tau_t + (\tau_t-1)f(\tau_t)}{\tau_t^2}  \right|^2\ ,
 \end{align}
 where $\tau_t$ is defined as
 \begin{equation}
@@ -505,58 +580,30 @@ f(x)= \left\{ \begin{array}{lcc}
 \caption{Production cross section of the scalar $s$ from protons collisions via gluon fusion, at $\sqrt{s} = \SI{13}{\tera\electronvolt}$. We have set $N_S=150$.}\label{fig:crossect}
 \end{figure}
 
-In order to obtain the cross section for the proton collision at a certain center of mass energy $\sqrt{s}$ from the partonic cross section, we have to use the gluon parton distribution functions $g(x; Q^2)$:
+In order to obtain the cross section for the proton collision at a certain center-of-mass energy $\sqrt{s}$ from the partonic cross section, we have to use the gluon parton distribution functions $g(x; Q^2)$:
 \begin{equation}
 \sigma(pp\to s) = \sigma_0 \frac{m_s^2}{s} \int_{m_s^2/s}^1\frac{\dif x}{x} g(x; M^2) g(m_s^2/xs; M^2) \ .
 \end{equation}
 
 
 
-We have evaluated this cross section at the current LHC energy, $\sqrt{s}=\SI{13}{\tera\electronvolt}$. The parton distribution functions used were calculated by the group \textsc{CTEQ6.6}. The resulting cross sections are shown in \textsc{fig.} \ref{fig:crossect}. The large mass of the scalar $s$ and the fact that the production is suppressed by a factor $\sin^2\theta$ mean that the production cross sections at LHC are several orders of magnitude smaller than those of the Higgs boson.
+We have evaluated this cross section at the current LHC energy, $\sqrt{s}=\SI{13}{\tera\electronvolt}$. The parton distribution functions used were calculated by the group \textsc{CTEQ6.6} \cite{Nadolsky:2008zw}. The resulting cross sections are shown in \textsc{fig.} \ref{fig:crossect}. The large mass of the scalar $s$ and the fact that the production is suppressed by a factor $\sin^2\theta$ mean that the production cross sections at LHC are several orders of magnitude smaller than those of the Higgs boson.
 
 
-In the recent months there has been a great fuss in particle physics about a possible resonance seen by LHC at \SI{750}{\giga\electronvolt}\cite{ATLAS:2015, CMS:2015dxe}, yet to be confirmed or discarded. A large number of theoretical model try to explain this signal \cite{Staub:2016dxq}. It is natural to ask ourselves if our model can fit such particle.
+\section{Conclusions and outlook}\label{sect:conclusion}
+In this master thesis, we have presented a model to describe the electroweak symmetry breaking following the mechanism of Coleman and Weinberg. The motivation for this proposal is inspired in the hierarchy problem and the vacuum stability problem. The solution of the hierarchy problem arises in this model since the classical potential depends only on dimensionless parameters, and all the masses and vacuum expectation values are exponentially controlled by quantum radiative corrections. Regarding the vacuum stability problem, we have shown that a suitable choice of parameters leads to a Higgs potential which is stable up to the Grand Unification scale, where the potential vanishes. 
 
+An interesting feature of this model is that it demands the existence of a scalar multiplet by construction. The most part of the degrees of freedom associated to such a multiplet remain massless and decoupled at tree level from the Standard Model particles (except for a four-particle interaction with the Higgs doublet). However, the model predicts the existence of a new scalar massive particle, which couples with the entire Standard Model due to its mixing with the Standard Model Higgs. The consistency of the model requires that the mass of this new particle must be larger than the Higgs boson mass, while considerations of the unification of the coupling constants predict a mass of a few teraelectronvolts.
 
+The new particle and the Higgs boson mix to form mass eigenstates. Even though a very massive scalar has a little mixing with the Higgs boson, this mixing would be responsible for the production of the particle in accelerators and its decays to quarks and weak bosons. We have computed the production at a proton-proton collider such as the LHC, where the main channel is gluon fusion. On the other hand, we have shown that the principal decay channel is into two Higgs bosons.
 
+For high masses, the mixing is so small that is not possible to be detected at the LHC. In this sense, it is interesting to compare with real data. In the recent months, a possible resonance seen by the LHC at \SI{750}{\giga\electronvolt}\cite{ATLAS:2015, CMS:2015dxe, Aaboud:2016tru}, yet to be confirmed or discarded, has captured the attention of particle physicist. A large number of theoretical models try to explain this signal \cite{Staub:2016dxq}. It is natural to ask ourselves if our model can fit such particle.
+
+The would-be resonance has been observed in the diphoton channel. The Higgs boson (or a Higgs-like particle such as $s$) does not couple directly to photons, so the process $s \to \gamma\gamma$ needs a loop diagram, and the branching ratio is much smaller than that of quarks or weak bosons. ATLAS quotes a width for the \SI{750}{\giga\electronvolt} particle of $\Gamma \sim \SI{45}{\giga\electronvolt}$ and a cross section decay $\sigma(pp \to X \to \gamma\gamma) = \sigma(pp\to X)\times \mathrm{BR}(X \to \gamma\gamma) \sim \SI{20}{\femto\barn}$. CMS quotes 
+$\sigma(pp \to X \to \gamma\gamma) \sim \SI{30}{\femto\barn}$, but no value for $\Gamma$. In contrast, our model predicts $\Gamma = \SI{1.2}{\giga\electronvolt}$ and $\sigma(pp\to s)= \SI{6e-3}{\femto\barn}$ for $m_s = \SI{750}{\giga\electronvolt}$.
+
+We must conclude that our model does not reproduce at all the \SI{750}{\giga\electronvolt} resonance. In addition, the most promising sector of parameters of the model predict a mass for $s$ too large and production cross sections and decay widths too small to be detected at LHC. Experimental verification must wait for the next generation of particle colliders.
 \bibliographystyle{apsrev4-1}
 \bibliography{memoria} 
-
-\begin{comment}
-\newpage
-\clearpage
-
-\begin{widetext}
-El abajo firmante, matriculado en el Máster de Física Teórica de la Facultad de Ciencias Físicas, autoriza a la Universidad Complutense de Madrid (UCM) a difundir y utilizar con fines académicos, no comerciales y mencionando expresamente a su autor el presente Trabajo de Fin de Máster: Nuevas aplicaciones del modelo de Coleman-Weinberg, realizado durante el curso académico 2015-2016 bajo la dirección de Jose A. Ruiz Cembranos en el Departamento de Física Teórica I, y a la Biblioteca de la UCM a depositarla en el Archivo institucional E-Prints Complutense u otra plataforma de la UCM que se cree para tal fin con el objeto de incrementar la difusión, uso e impacto del trabajo en Internet y garantizar su preservación y acceso a largo plazo.\\
-
-La publicación en abierto tendrá un embargo de:
-\\
-
-\noindent$\,X\,$ Ninguno
-\\
-
-
-Fdo:\\
-
-
-\vspace{3cm}
-
-El abajo firmante, director del Máster de Física Teórica de la Facultad de Ciencias Físicas, autoriza a la Universidad Complutense de Madrid (UCM) a difundir y utilizar con fines académicos, no comerciales y mencionando expresamente a su autor el presente Trabajo de Fin de Máster: Nuevas aplicaciones del modelo de Coleman-Weinberg, realizado durante el curso académico 2015-2016 bajo mi dirección en el Departamento de Física Teórica I, y a la Biblioteca de la UCM a depositarla en el Archivo institucional E-Prints Complutense u otra plataforma de la UCM que se cree para tal fin con el objeto de incrementar la difusión, uso e impacto del trabajo en Internet y garantizar su preservación y acceso a largo plazo.\\
-
-La publicación en abierto tendrá un embargo de:
-\\
-
-\noindent$\,X\,$ Ninguno
-\\
-
-
-Fdo:\\
-
-
-\vspace{12cm}
-
-\end{widetext}
-
-\end{comment}
 
 \end{document} 
