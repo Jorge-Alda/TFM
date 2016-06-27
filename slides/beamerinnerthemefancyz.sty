@@ -1,0 +1,153 @@
+% Copyright 2015 by Jorge Alda Gallo
+% Based on work by Marco Barisione
+%
+% This file may be distributed and/or modified
+%
+% 1. under the LaTeX Project Public License and/or
+% 2. under the GNU Public License.
+\mode<presentation>
+
+
+% Logo to use in the alternative title page.
+\def\beamer@fancyz@titlepagelogo{}
+\DeclareOptionBeamer{titlepagelogo}{\def\beamer@fancyz@titlepagelogo{#1}}
+
+% Width of the logo in title page
+\def\beamer@fancyz@logowidth{}
+\DeclareOptionBeamer{logowidth}[0.5]{\def\beamer@fancyz@logowidth{#1}}
+
+% Width of the authors in title page
+\def\beamer@fancyz@logowidth{}
+\DeclareOptionBeamer{authorwidth}[0.5]{\def\beamer@fancyz@authorwidth{#1}}
+
+% Bullet shape.
+\DeclareOptionBeamer{bullet}{\def\beamer@fancyz@bullet{#1}}
+
+\ExecuteOptionsBeamer{bullet=circle}
+\ProcessOptionsBeamer
+
+% Colors.
+\setbeamercolor*{lineup}{parent=palette primary}
+\setbeamercolor*{linemid}{parent=palette secondary}
+\setbeamercolor*{linebottom}{parent=palette tertiary}
+\setbeamercolor*{title page header}{parent=palette quaternary}
+
+% Lengths.
+\newlength{\beamer@fancyz@lineup}
+\setlength{\beamer@fancyz@lineup}{.025\paperheight}
+\newlength{\beamer@fancyz@linemid}
+\setlength{\beamer@fancyz@linemid}{.015\paperheight}
+\newlength{\beamer@fancyz@linebottom}
+\setlength{\beamer@fancyz@linebottom}{.01\paperheight}
+
+% Margins.
+\newlength{\beamer@fancyz@normalmargin}
+\setlength{\beamer@fancyz@normalmargin}{.06\paperwidth}
+\setbeamersize{text margin left=\beamer@fancyz@normalmargin}
+\setbeamersize{text margin right=\beamer@fancyz@normalmargin}
+\setlength\leftmargini{.6\beamer@fancyz@normalmargin}
+\setlength\leftmarginii{.6\beamer@fancyz@normalmargin}
+\setlength\leftmarginiii{.6\beamer@fancyz@normalmargin}
+
+
+\defbeamertemplate*{title page normal}{fancyz theme}[1][]
+{
+  {\parskip0pt\offinterlineskip%
+  \hbox{\hskip-\Gm@lmargin\hbox{\vbox{%
+  \@tempdima=\textwidth\textwidth=\paperwidth\hsize=\textwidth\def\\{,}\vbox{}\vskip-1.5ex%
+    % Title.
+    \begin{beamercolorbox}[wd=\paperwidth,ht=.4\paperheight,center,#1]{title page header}
+      \usebeamerfont{title}\inserttitle\par%
+      \ifx\insertsubtitle\@empty%
+      \else%
+        \vskip0.25em%
+        {\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par}%
+      \fi%     
+      \vspace{.125\paperheight}%
+    \end{beamercolorbox}%
+    \vbox{}\vskip-\beamer@fancyz@lineup%
+    \vbox{}\vskip-\beamer@fancyz@linemid%
+    % First line.
+    \hbox{%
+    \begin{beamercolorbox}[wd=.2\paperwidth,ht=\beamer@fancyz@lineup,dp=0pt]{}%
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.8\paperwidth,ht=\beamer@fancyz@lineup,dp=0pt]{lineup}%
+    \end{beamercolorbox}%
+    }%
+    \vbox{}\vskip0ex%
+    % Second line.
+    \hbox{%
+    \begin{beamercolorbox}[wd=.1\paperwidth,ht=\beamer@fancyz@linemid,dp=0pt]{}%
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.9\paperwidth,ht=\beamer@fancyz@linemid,dp=0pt]{linemid}%
+    \end{beamercolorbox}%
+    }%
+    % Third line.
+    \hbox{%
+    \begin{beamercolorbox}[wd=.5\paperwidth,ht=\beamer@fancyz@linebottom,dp=0pt]{}%
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.5\paperwidth,ht=\beamer@fancyz@linebottom,dp=0pt]{linebottom}%
+    \end{beamercolorbox}%
+    }%
+    \vskip0pt%
+  }}%
+  \hskip-\Gm@rmargin%
+  }}\hfil%
+  %
+  \begin{columns}[totalwidth=\textwidth]
+      \ifx\beamer@fancyz@titlepagelogo\@empty%
+          \column{\textwidth}
+      \else
+          \column{\beamer@fancyz@logowidth\textwidth}
+              % Logo.
+              \begin{centering}
+                  \vbox{}\vfill
+                  \includegraphics[width=\textwidth]{\beamer@fancyz@titlepagelogo}
+                  \vfill
+              \end{centering}
+          \column{\beamer@fancyz@authorwidth\textwidth}
+       \fi
+          % Authors, institute and date
+          \vskip1em\par
+          \begin{beamercolorbox}[sep=8pt,center,#1]{author}
+            \usebeamerfont{author}\insertauthor
+          \end{beamercolorbox}
+          \begin{beamercolorbox}[sep=8pt,center,#1]{institute}
+            \usebeamerfont{institute}\insertinstitute
+          \end{beamercolorbox}
+          \begin{beamercolorbox}[sep=8pt,center,#1]{date}
+            \usebeamerfont{date}\insertdate
+          \end{beamercolorbox}\vskip0.5em
+          {\usebeamercolor[fg]{titlegraphic}\inserttitlegraphic\par}
+  \end{columns}
+}
+
+\defbeamertemplate*{title page}{fancyz}[1][]
+{
+    \usebeamertemplate{title page normal}%
+}
+
+% Items.
+\defbeamertemplate{itemize item}{squarealt}%
+{\tiny\raise.5ex\hbox{\donotcoloroutermaths$\blacksquare$}}
+\defbeamertemplate{itemize subitem}{squarealt}%
+{\tiny\raise.4ex\hbox{\donotcoloroutermaths$\square$}}
+\defbeamertemplate{itemize subsubitem}{squarealt}%
+{\tiny\raise.3ex\hbox{\donotcoloroutermaths$\blacksquare$}}
+
+\defbeamertemplate{itemize item}{circlealt}%
+{\small\raise.2ex\hbox{\donotcoloroutermaths$\bullet$}}
+\defbeamertemplate{itemize subitem}{circlealt}%
+{\small\raise.1ex\hbox{\donotcoloroutermaths$\circ$}}
+\defbeamertemplate{itemize subsubitem}{circlealt}%
+{\scriptsize\raise.1ex\hbox{\donotcoloroutermaths$\bullet$}}
+
+\def\circletext{circle}
+\ifx\beamer@fancyz@bullet\circletext
+  \setbeamertemplate{items}[circlealt]
+\else
+  \setbeamertemplate{items}[squarealt]
+\fi
+
+\mode<all>
+
